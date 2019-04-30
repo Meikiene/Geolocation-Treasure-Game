@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <script src="p5/p5.min.js"></script>
+    <script src="p5/p5.geolocation.js"></script>
+  </head>
+  <body>
+    <h1 id="locAvail"></h1>
+    <h1 id="distance"></h1>
+    <script>
+    var distance; //stores the distance.
+    var mylat;
+    var mylon;
+    var treasurelat = 21.310222;
+    var treasurelon = -157.837545;
+    var $ = document;
+    function setup(){
+      if(geoCheck() == true) {
+        $.getElementById('locAvail').innerHTML = "Ready";
+      } else {
+        $.getElementById('locAvail').innerHTML = "Must have GPS Enabled";
+      }
+      intervantCurrentPosition(positionPing,1000);
+    }
+    function positionPing(position){
+      mylat = position.latitude;
+      mylon = position.longitude;
+      distance = calcGeoDistance(mylat,mylon,treasurelat,treasurelon,'mi');
+      $.getElementById('distance').innerHTML = distance.toFixed(2);
+      if (distance < 0.05) {
+        $.getElementById('locAvail').innerHTML = "YOU FOUND THE TREASURE";
+      }
+    }
+    </script>
+  </body>
+</html>
