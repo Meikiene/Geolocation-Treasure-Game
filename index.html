@@ -10,8 +10,8 @@
     var distance; //stores the distance.
     var mylat;
     var mylon;
-    var treasurelat = 21.310222;
-    var treasurelon = -157.837545;
+    var treasurelat = 21.311285;
+    var treasurelon = -157.837918;
     var $ = document;
     function setup(){
       if(geoCheck() == true) {
@@ -20,13 +20,14 @@
         $.getElementById('locAvail').innerHTML = "Must have GPS Enabled";
       }
       intervalCurrentPosition(positionPing,1000);
+      enableHighAccuracy; true;
     }
     function positionPing(position){
       mylat = position.latitude;
       mylon = position.longitude;
       distance = calcGeoDistance(mylat,mylon,treasurelat,treasurelon,'mi');
-      $.getElementById('distance').innerHTML = distance.toFixed(2);
-      if (distance < 0.05) {
+      $.getElementById('distance').innerHTML = distance.toFixed(5);
+      if (distance < 0.001) {
         $.getElementById('locAvail').innerHTML = "YOU FOUND THE TREASURE";
       }
     }
