@@ -27,7 +27,7 @@
       mylon = position.longitude;
       distance = calcGeoDistance(mylat,mylon,treasurelat,treasurelon,'mi');
       $.getElementById('distance').innerHTML = distance.toFixed(5);
-      if (distance < 0.001) {
+      if (distance < 0.008) {
         $.getElementById('locAvail').innerHTML = "YOU FOUND THE TREASURE";
       }
       else{
